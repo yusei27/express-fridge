@@ -18,7 +18,7 @@ export const login = () => {
         const data_request:request = {"email":email, "password":password};
         axios.post("http://login:3333//login/user", JSON.stringify(data_request), {headers:{'Content-Type': 'application/json'}})
             .then((res: AxiosResponse) => {
-                console.log("ユーザー登録API成功");
+                console.log("ログイン成功");
             })
             .catch((e: AxiosError<{error: string}>) => {
                 console.log("ユーザー登録API失敗s", e);
