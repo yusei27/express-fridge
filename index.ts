@@ -6,10 +6,13 @@ const port = 3000;
 import session, { SessionOptions } from 'express-session';
 import { createSession } from './routes/session';
 import { login } from './routes/login';
+import cookieParser from 'cookie-parser';
+
 
 
 //session設定
-
+app.set('trust proxy', 1) 
+app.use(cookieParser());
 declare module 'express-session' {
   interface SessionData {
       name: string;
@@ -20,14 +23,14 @@ var session_opt:SessionOptions = {
   secret: 'secret',
   resave: false,
   saveUninitialized: true,
-  
-  cookie: {maxAge: 60 * 60 * 1000, secure:false, httpOnly: false}
+  name: 'express',
+  cookie: {maxAge: 60 * 60 * 1000,  secure: true, sameSite:'none', httpOnly: true}
 };
 
 
 //cors設定
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:5143', 'http://192.168.101.63:5173/*', 'http://localhost:5143/Main', 'http://192.168.101.63:5173/Main']
+  origin: ['http://localhost:5143', 'http://192.168.101.63:5173/*', 'http://localhost:5143/Main', 'http://192.168.101.63:5173/Main', 'https://localhost:5143', 'https://localhost:5143/Main','http://localhost:5173']
 };
 
 //cors対策
@@ -49,9 +52,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session(session_opt));
 
 app.use('/session', cors(options), createSession());
-app.use('/login',cors(options), login());
+app.use('/login', cors(options), login());
 
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+//https対応
+const fs = require('fs');
+const server = require('https').createServer({
+    key: fs.readFileSync('./privatekey.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+}, app)
+server.listen(port, () => console.log(`Example app listening on port ${port}!`));

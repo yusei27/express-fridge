@@ -23,3 +23,6 @@ cors対策について
 https://qiita.com/chenglin/items/5e563e50d1c32dadf4c3
 https://www.twilio.com/en-us/blog/add-cors-support-express-typescript-api
 route単位でcorsを設定する方針で実装
+
+application content jsonがうまくいかないとき
+https://apidog.com/jp/blog/x-www-form-urlencoded/

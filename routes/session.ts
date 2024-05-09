@@ -6,7 +6,7 @@ export const createSession = () => {
 
     router.get('/', (req:express.Request, res:express.Response) => {
         res.header("Access-Control-Allow-Credentials", "true");
-        res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+        res.header('Access-Control-Allow-Origin', 'https://localhost:5173');
         if (req.session.name != undefined){
             console.log("セッション確立済み");
             msg = req.session.name;
@@ -14,10 +14,10 @@ export const createSession = () => {
         }else{
             msg = "セッションありません"
             console.log("セッションがありません。")
-            if (req.session.name === undefined){
-                console.log("セッションセット")
-                req.session.name= "セッション名";
-            }
+            // if (req.session.name === undefined){
+            //     console.log("セッションセット")
+            //     req.session.name= "セッション名";
+            // }
             res.sendStatus(300)
         }
         
@@ -38,6 +38,7 @@ export const createSession = () => {
 
     router.get('/confirm_login', (req, res) => {
         res.header("Access-Control-Allow-Credentials", "true");
+        res.header('Access-Control-Allow-Origin', 'https://localhost:5173');
         console.log("confirm_login", req.session.name)
         if (req.session.name !== undefined){
             console.log("confirm_login", req.session.name)
