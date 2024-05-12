@@ -60,7 +60,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 //https対応
 const fs = require('fs');
 const server = require('https').createServer({
-    key: fs.readFileSync('./privatekey.pem'),
-    cert: fs.readFileSync('./cert.pem'),
+    key: fs.readFileSync('./network/privatekey.pem'),
+    cert: fs.readFileSync('./network/cert.pem'),
 }, app)
 server.listen(port, () => console.log(`Example app listening on port ${port}!`));
