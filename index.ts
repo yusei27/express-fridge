@@ -30,7 +30,7 @@ var session_opt:SessionOptions = {
 
 //cors設定
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:5143', 'http://192.168.101.63:5173/*', 'http://localhost:5143/Main', 'http://192.168.101.63:5173/Main', 'https://localhost:5143', 'https://localhost:5143/Main','http://localhost:5173']
+  origin: ['http://localhost:5143', 'http://192.168.101.63:5173/*', 'http://localhost:5143/Main', 'http://192.168.101.63:5173/Main', 'https://localhost:5143', 'https://localhost:5143/Main','http://localhost:5173', 'http://localhost']
 };
 
 //cors対策
@@ -63,4 +63,9 @@ const server = require('https').createServer({
     key: fs.readFileSync('./network/privatekey.pem'),
     cert: fs.readFileSync('./network/cert.pem'),
 }, app)
+
+//https版
 server.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+//http版
+//app.listen(port, () => console.log(`Example app listening on port ${port}!`));
