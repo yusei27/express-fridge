@@ -9,7 +9,7 @@ export const login = () => {
         // res.header('Access-Control-Allow-Origin', '*');
         
         // res.header('Access-Control-Allow-Origin', ['http://192.168.101.63:5173', 'http://localhost:5173']);
-        res.header('Access-Control-Allow-Origin', 'http://localhost');
+        res.header('Access-Control-Allow-Origin', process.env.CORS_URL_FOR_EXPRESS);
         res.header("Access-Control-Allow-Credentials", "true");
         // res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
         res.header('Access-Control-Allow-Methods', 'POST, PUT, DELETE, OPTIONS');

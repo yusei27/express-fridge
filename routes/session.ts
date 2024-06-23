@@ -6,7 +6,7 @@ export const createSession = () => {
 
     router.get('/', (req:express.Request, res:express.Response) => {
         res.header("Access-Control-Allow-Credentials", "true");
-        res.header('Access-Control-Allow-Origin', 'http://localhost');
+        res.header('Access-Control-Allow-Origin', process.env.CORS_URL_FOR_EXPRESS);
         if (req.session.name != undefined){
             console.log("セッション確立済み");
             msg = req.session.name;
@@ -38,7 +38,7 @@ export const createSession = () => {
 
     router.get('/confirm_login', (req, res) => {
         res.header("Access-Control-Allow-Credentials", "true");
-        res.header('Access-Control-Allow-Origin', 'http://localhost');
+        res.header('Access-Control-Allow-Origin', process.env.CORS_URL_FOR_EXPRESS);
         console.log("confirm_login", req.session.name)
         if (req.session.name !== undefined){
             console.log("confirm_login", req.session.name)

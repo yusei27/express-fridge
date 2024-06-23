@@ -71,9 +71,9 @@ const server = require('https').createServer({
 }, app)
 
 //https版
-server.listen(port, () => console.log(`Example app listening on port ${port}!`));
+//server.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 console.log(process.env)
 
 //http版
-//app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
