@@ -8,6 +8,10 @@ import { createSession } from './routes/session';
 import { login } from './routes/login';
 import cookieParser from 'cookie-parser';
 
+if (process.env.NODE_ENV === 'development') {
+  console.log(__dirname);
+  require('dotenv').config({path: __dirname+"/.env.dev"});
+}
 
 
 //session設定
@@ -30,7 +34,9 @@ var session_opt:SessionOptions = {
 
 //cors設定
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:5143', 'http://192.168.101.63:5173/*', 'http://localhost:5143/Main', 'http://192.168.101.63:5173/Main', 'https://localhost:5143', 'https://localhost:5143/Main','http://localhost:5173', 'http://localhost']
+  //origin: ['http://localhost:5143', 'http://192.168.101.63:5173/*', 'http://localhost:5143/Main', 'http://192.168.101.63:5173/Main', 'https://localhost:5143', 'https://localhost:5143/Main','http://localhost:5173', 'http://localhost']
+  origin: process.env.CORS_URL_FOR_EXPRESS
+
 };
 
 //cors対策
@@ -66,6 +72,8 @@ const server = require('https').createServer({
 
 //https版
 server.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+console.log(process.env)
 
 //http版
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));

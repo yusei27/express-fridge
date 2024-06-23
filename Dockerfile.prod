@@ -5,7 +5,7 @@ WORKDIR /express-fridge
 COPY ./ /express-fridge/
 
 RUN npm install
-
+ENV NODE_ENV production
 CMD ["npx", "ts-node", "index.ts"]
 
 #[各種コマンド]
