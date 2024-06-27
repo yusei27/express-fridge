@@ -3,11 +3,15 @@ import cors from "cors";
 const app = express();
 const port = 3000;
 
+
+
+
 import session, { SessionOptions } from 'express-session';
 import { createSession } from './routes/session';
 import { login } from './routes/login';
 import cookieParser from 'cookie-parser';
 
+//環境変数
 if (process.env.NODE_ENV === 'development') {
   console.log(__dirname);
   require('dotenv').config({path: __dirname+"/.env.dev"});
@@ -30,6 +34,10 @@ var session_opt:SessionOptions = {
   name: 'express',
   cookie: {maxAge: 60 * 60 * 1000,  secure: true, sameSite:'none', httpOnly: true}
 };
+
+//httpアクセスログ
+import logger from "morgan";
+app.use(logger('common'));
 
 
 //cors設定

@@ -27,7 +27,9 @@ export const login = () => {
             "password":string,
         };
         const data_request:request = {"email":email, "password":password};
-        axios.post("http://login:3333//login/user", JSON.stringify(data_request), {headers:{'Content-Type': 'application/json'}})
+        const URL_LOGIN_API:string = process.env.URL_LOGIN_API;
+        process.env.CORS_URL_FOR_EXPRESS
+        axios.post(URL_LOGIN_API, JSON.stringify(data_request), {headers:{'Content-Type': 'application/json'}})
             .then((res_login: AxiosResponse) => {
                 console.log("ユーザー登録API成功s");
                 req.session.name = email;
